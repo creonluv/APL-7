@@ -97,9 +97,6 @@ while vertices <= 0 || vertices > 100
   vertices = gets.chomp.to_i
 end
 
-# edges = [Edge.new(0, 1, 1),
-#          Edge.new(2, 0, 4)]
-
 counter = 0
 edges_set = Set.new
 
@@ -149,6 +146,9 @@ end
 #          Edge.new(2, 3, 1),
 #          Edge.new(3, 4, 3),
 #          Edge.new(4, 1, 2)]
+#
+# edges = [Edge.new(0, 1, 1),
+#          Edge.new(2, 0, 4)]
 
 minimum_spanning_tree = kruskal(vertices, edges_set.to_a)
 
