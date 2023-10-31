@@ -97,10 +97,14 @@ while vertices <= 0 || vertices > 100
   vertices = gets.chomp.to_i
 end
 
+# edges = [Edge.new(0, 1, 1),
+#          Edge.new(2, 0, 4)]
+
 counter = 0
 edges_set = Set.new
 
 loop do
+
   puts "Введіть ребро #{counter} у форматі 'vertex_from vertex_to weight' для кожного ребра (наприклад, '1 2 5') або 'end' для завершення:"
   input = gets.chomp
 
@@ -109,6 +113,7 @@ loop do
   values = input.split.map(&:to_i).take(3)
   while values.size != 3 || values.any? { |vertex| vertex < 0 } || values[0, 2].any? { |vertex| vertex >= vertices }
     puts "Введено некоректне ребро. Спробуйте знову."
+    puts "Ребро #{counter}: "
     input = gets.chomp
     break if input.downcase == 'end'
     values = input.split.map(&:to_i).take(3)
@@ -136,6 +141,14 @@ puts "Ребра:"
 edges_set.each_with_index do |edge, index|
   puts "Ребро #{index}: from #{edge.from} to #{edge.to}, вага #{edge.weight}"
 end
+
+# edges = [Edge.new(0, 1, 3),
+#          Edge.new(0, 2, 5),
+#          Edge.new(1, 2, 2),
+#          Edge.new(1, 3, 1),
+#          Edge.new(2, 3, 1),
+#          Edge.new(3, 4, 3),
+#          Edge.new(4, 1, 2)]
 
 minimum_spanning_tree = kruskal(vertices, edges_set.to_a)
 
